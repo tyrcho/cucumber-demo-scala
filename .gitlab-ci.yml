@@ -1,0 +1,13 @@
+test:
+  script:
+    - sbt cucumber
+  cache:
+    key: sbt-$CI_BUILD_REF_NAME
+    paths:
+      - sbt-cache
+  variables:
+    SBT_OPTS: "-Dsbt.global.base=sbt-cache/sbtboot -Dsbt.boot.directory=sbt-cache/boot -Dsbt.ivy.home=sbt-cache/ivy"
+    COURSIER_CACHE: "sbt-cache/coursier"
+  image: hseeberger/scala-sbt:11.0.4_1.3.2_2.12.10
+
+
