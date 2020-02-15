@@ -1,13 +1,18 @@
 package com.demo
 
-import io.cucumber.java8.{En, Scenario}
+import cucumber.api.Scenario
+import cucumber.api.scala.{EN, ScalaDsl}
 
-class MySteps extends En {
-  Given("^I press (.+)$", (what: String) => println(s"pressed $what"))
+class MySteps extends ScalaDsl with EN {
+  Given("a calculator I just turned on") { () =>
+    println("starting")
+  }
 
-  Given("^a calculator I just turned on$", () => println("starting"))
+  When("I press (.*)"){ what:Int =>
+    println(s"pressed $what")
+  }
 
-  Before("not @foo", (scenario: Scenario) => {
-   scenario.write("hello scenario")
-  })
+  Before("not @foo") { scenario: Scenario =>
+    scenario.write("hello scenario")
+  }
 }

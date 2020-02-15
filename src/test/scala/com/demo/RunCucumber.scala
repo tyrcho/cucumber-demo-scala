@@ -1,5 +1,17 @@
 package com.demo
 
+import io.cucumber.core.cli.Main
+
 object RunCucumber extends App {
-  io.cucumber.core.cli.Main.main("--strict", "--plugin", "pretty", "src/test/resources")
+  Main.main(
+    Array(
+      "--strict",
+      "-g",
+      "com.demo",
+      "--plugin",
+      "pretty",
+      "--plugin",
+      "html:target/cucumber",
+      "src/test/resources",
+    ))
 }
